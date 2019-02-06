@@ -1,0 +1,187 @@
+{
+    "title": "Example IOC Definitions",
+    "date": "2018-05-20T10:09:09+00:00",
+    "author": "carey.tews@trustnetworks.com",
+    "examples": [
+        {
+            "description": "Minimal IOC Definition",
+            "definition": {
+                "indicator": {
+                    "id": "AlienVault-5acf314b93eddb35577f7430",
+                    "type": "hostname",
+                    "value": "acinster.info",
+                    "description": "Foniad Malware",
+                    "category": "malware",
+                    "author": "AlienVault",
+                    "source": "https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad"
+                },
+                "pattern": {
+                    "type": "hostname",
+                    "value": "acinster.info",
+                    "match": "dns"
+                }
+            }
+        },
+        {
+            "description": "Simple OR'd Definition",
+            "definition": {
+                "operator": "OR",
+                "indicator": {
+                    "id": "AlienVault-5acf314b93eddb35577f7430",
+                    "type": "from-pattern",
+                    "value": "from-pattern",
+                    "description": "Foniad Malware",
+                    "category": "malware",
+                    "author": "AlienVault",
+                    "source": "https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad"
+                },
+                "children": [
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "acinster.info",
+                            "match": "dns"
+                        }
+                    },
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "aclassigned.info",
+                            "match": "dns"
+                        }
+                    },
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "efishedo.info",
+                            "match": "dns"
+                        }
+                    },
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "enclosely.info",
+                            "match": "dns"
+                        }
+                    },
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "insupposity.info",
+                            "match": "dns"
+                        }
+                    },
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "maraukog.info",
+                            "match": "dns"
+                        }
+                    },
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "suggedin.info",
+                            "match": "dns"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "description": "Simple AND'd Definition",
+            "definition": {
+                "operator": "AND",
+                "indicator": {
+                    "id": "c5f18eb2-3487-4dac-b6a5-5aa31b0ba59c",
+                    "type": "ipv4",
+                    "value": "66.228.60.139",
+                    "description": "Simple AND",
+                    "category": "test",
+                    "author": "carey.tews@trustnetworks.com",
+                    "source": "https://www.trustnetworks.com"
+                },
+                "children": [
+                    {
+                        "pattern": {
+                            "type": "src.ipv4",
+                            "value": "66.228.60.139"
+                        }
+                    },
+                    {
+                        "pattern": {
+                            "type": "src.tcp",
+                            "value": "666",
+                            "match": "int"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "description": "Simple NOT'd Definition",
+            "definition": {
+                "operator": "AND",
+                "indicator": {
+                    "id": "c5f18eb2-3487-4dac-b6a5-5aa31b0ba59c",
+                    "type": "hostname",
+                    "value": "rapid7.com",
+                    "description": "Simple NOT",
+                    "category": "hacking",
+                    "author": "carey.tews@trustnetworks.com",
+                    "source": "https://www.trustnetworks.com"
+                },
+                "children": [
+                    {
+                        "pattern": {
+                            "type": "hostname",
+                            "value": "rapid7.com",
+                            "match": "dns"
+                        }
+                    },
+                    {
+                        "operator": "NOT",
+                        "children": [
+                            {
+                                "pattern": {
+                                    "type": "device",
+                                    "value": "minesweepers-mac"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "description": "Source TCP port range pattern",
+            "definition": {
+                "id": "210b48ef-9d4a-486e-86c1-bf4b89431102",
+                "comment": "Source TCP ports 7000 to 65535 for the tor.exit port range",
+                "pattern": {
+                    "type": "src.tcp",
+                    "value": "7000",
+                    "value2": "65535",
+                    "match": "range"
+                }
+            }
+        },
+        {
+            "description": "AND'd pattern using a reference",
+            "definition": {
+                "operator": "AND",
+                "children": [
+                    {
+                        "pattern": {
+                            "type": "src.ipv4",
+                            "value": "185.62.189.76"
+                        }
+                    },
+                    {
+                        "ref": "210b48ef-9d4a-486e-86c1-bf4b89431102"
+                    }
+                ]
+            }
+        }
+    ]
+}

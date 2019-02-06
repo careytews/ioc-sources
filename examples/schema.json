@@ -1,0 +1,173 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema",
+    "title": "Indicator definition set",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "$ref": "#/definitions/IndicatorNode"
+    },
+    "definitions": {
+        "IndicatorNode": {
+            "title": "IndicatorNode",
+            "description": "A generic, recursive, IOC component",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "The unique identifier for an IndicatorNode",
+                    "type": "string"
+                },
+                "comment": {
+                    "description": "Any comment about the node",
+                    "type": "string"
+                },
+                "ref": {
+                    "description": "A reference to another node",
+                    "type": "string"
+                },
+                "operator": {
+                    "description": "The boolean operator used on the children",
+                    "type": "string",
+                    "enum":[
+                        "AND",
+                        "OR",
+                        "NOT"
+                    ]
+                },
+                "indicator": {
+                    "title": "Indicator",
+                    "description": "The meta-data describing a node that represents an IOC",
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "description": "The unique ID of an IOC",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The type of an IOC",
+                            "type": "string",
+                            "enum": [
+                                "ipv4",
+                                "ipv6",
+                                "tcp",
+                                "udp",
+                                "ntpmode",
+                                "hostname",
+                                "url",
+                                "country",
+                                "md5"
+                            ]
+                        },
+                        "value": {
+                            "description": "The value of an IOC",
+                            "type": "string"
+                        },
+                        "description": {
+                            "description": "The description of an IOC",
+                            "type": "string"
+                        },
+                        "category": {
+                            "description": "The risk category associated with an IOC",
+                            "type": "string",
+                            "enum": [
+                                "location.unexpected",
+                                "lost.laptop",
+                                "ntp.private",
+                                "oppression.rights",
+                                "porn",
+                                "redirector",
+                                "sex.lingerie",
+                                "spyware",
+                                "test",
+                                "tor.entry",
+                                "tor.exit",
+                                "violence",
+                                "warez",
+                                "insecure",
+                                "drugs",
+                                "dynamic",
+                                "gamble",
+                                "hacking",
+                                "aggressive",
+                                "anonvpn",
+                                "compromised-credentials",
+                                "covert.dns-tunnel"
+                            ]
+                        },
+                        "author": {
+                            "description": "The email address or other id for the author of an IOC",
+                            "type": "string"
+                        },
+                        "source": {
+                            "description": "The feed or other source of an IOC",
+                            "type": "string"
+                        }
+                    },
+                    "required":[
+                        "id",
+                        "type",
+                        "value",
+                        "description",
+                        "category",
+                        "author",
+                        "source"
+                    ]
+                },
+                "children": {
+                    "description": "The child nodes describing the indicator",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/IndicatorNode"
+                    }
+                },
+                "pattern": {
+                    "title": "Pattern",
+                    "description": "A pattern representing an observable",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "description": "The type of the observable",
+                            "type": "string",
+                            "enum":[
+                                "src.ipv4",
+                                "dest.ipv4",
+                                "src.ipv6",
+                                "dest.ipv6",
+                                "src.tcp",
+                                "dest.tcp",
+                                "src.udp",
+                                "dest.udp",
+                                "ntpmode",
+                                "hostname",
+                                "url",
+                                "src.country",
+                                "dest.country",
+                                "md5"                            
+                            ]
+                        },
+                        "value": {
+                            "description": "The value of the observable",
+                            "type": "string"
+                        },
+                        "value2": {
+                            "description": "The second value of the observable, used for ranges",
+                            "type": "string"
+                        },
+                        "match": {
+                            "description": "The kind of matching to use",
+                            "type": "string",
+                            "enum": [
+                                "int",
+                                "string",
+                                "dns",
+                                "range"
+                            ],
+                            "default": "string"
+                        }
+                    }
+                }
+            }
+    
+        }
+    }
+}

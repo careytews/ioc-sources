@@ -1,0 +1,441 @@
+{
+    "description": "Trust Networks Indicators",
+    "version": "3",
+    "definitions": [
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "AlienVault-5acf314b93eddb35577f7430",
+                "type": "from-pattern",
+                "value": "from-pattern",
+                "description": "Foniad Malware",
+                "category": "malware",
+                "author": "AlienVault",
+                "source": "https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=BrowserModifier:Win32/Foniad"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "hostname",
+                        "value": "acinster.info",
+                        "match": "dns"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "hostname",
+                        "value": "aclassigned.info",
+                        "match": "dns"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "hostname",
+                        "value": "efishedo.info",
+                        "match": "dns"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "hostname",
+                        "value": "enclosely.info",
+                        "match": "dns"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "hostname",
+                        "value": "insupposity.info",
+                        "match": "dns"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "hostname",
+                        "value": "maraukog.info",
+                        "match": "dns"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "hostname",
+                        "value": "suggedin.info",
+                        "match": "dns"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "7847a7b1-fc10-498c-a421-d2795806491b",
+            "comment": "Destination TCP ports 7000 to 65535 for the tor.exit port range",
+            "pattern": {
+                "type": "dest.tcp",
+                "value": "7000",
+                "value2": "65535",
+                "match": "range"
+            }
+        },
+        {
+            "id": "210b48ef-9d4a-486e-86c1-bf4b89431102",
+            "comment": "Source TCP ports 7000 to 65535 for the tor.exit port range",
+            "pattern": {
+                "type": "src.tcp",
+                "value": "7000",
+                "value2": "65535",
+                "match": "range"
+            }
+        },
+        {
+            "indicator": {
+                "id": "11fd235f-b2d2-4cd4-a138-5506bbdf29ce",
+                "type": "ntpmode",
+                "value": "7",
+                "description": "NTP private mode 7",
+                "category": "ntp.private",
+                "author": "carey.tews@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "pattern": {
+                "type": "ntpmode",
+                "value": "7",
+                "match": "int"
+            }
+        },
+        {
+            "indicator": {
+                "id": "918d9a7b-e60c-4c33-a872-ef22552e1aa4",
+                "type": "ntpmode",
+                "value": "6",
+                "description": "NTP private mode 6",
+                "category": "ntp.private",
+                "author": "carey.tews@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "pattern": {
+                "type": "ntpmode",
+                "value": "6",
+                "match": "int"
+            }
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "4a5fe79a-b188-41fe-b039-1aeabb1d71e1",
+                "type": "tcp",
+                "value": "23",
+                "description": "Telnet, insecure protocol",
+                "category": "insecure",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.tcp",
+                        "value": "23",
+                        "match": "int"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.tcp",
+                        "value": "23",
+                        "match": "int"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "2cf48864-bb19-4306-8a03-a465aef82e09",
+                "type": "tcp",
+                "value": "21",
+                "description": "FTP, insecure protocol",
+                "category": "insecure",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.tcp",
+                        "value": "21",
+                        "match": "int"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.tcp",
+                        "value": "21",
+                        "match": "int"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "2c45fd8d-11b2-4acb-84f8-8e8570e6e221",
+                "type": "tcp",
+                "value": "25",
+                "description": "SMTP insecure protocol",
+                "category": "insecure",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.tcp",
+                        "value": "25",
+                        "match": "int"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.tcp",
+                        "value": "25",
+                        "match": "int"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "0958c8f5-53a2-4c8e-a8fb-63af5601c720",
+                "type": "tcp",
+                "value": "110",
+                "description": "POP.3 insecure protocol",
+                "category": "insecure",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.tcp",
+                        "value": "110",
+                        "match": "int"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.tcp",
+                        "value": "110",
+                        "match": "int"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "d8283f52-d476-4519-9886-b90f3a9f2388",
+                "type": "country",
+                "value": "China",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "China"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "China"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "dd9fd9f5-d1ea-46f1-87ff-8f2dbbfb26bf",
+                "type": "country",
+                "value": "Russia",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "Russia"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "Russia"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "9c30b251-14b8-425d-84de-519e93ca4957",
+                "type": "country",
+                "value": "Haiti",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "Haiti"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "Haiti"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "01f3d796-e97a-40be-89d0-49d28a2c6a2d",
+                "type": "country",
+                "value": "Republic of Korea",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "Republic of Korea"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "Republic of Korea"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "24a371d7-a3fc-46df-8380-ea2b42972e9b",
+                "type": "country",
+                "value": "North Korea",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "North Korea"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "North Korea"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "a45fe47d-d379-46b1-b71f-70a4b6e5e47f",
+                "type": "country",
+                "value": "Kazakhstan",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "Kazakhstan"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "Kazakhstan"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "47c1b3f9-5731-44ea-9ef8-d2906139699b",
+                "type": "country",
+                "value": "Kenya",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "Kenya"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "Kenya"
+                    }
+                }
+            ]
+        },
+        {
+            "operator": "OR",
+            "indicator": {
+                "id": "65d76745-bb34-4d42-8cba-eed27adaa003",
+                "type": "country",
+                "value": "Latvia",
+                "description": "Unexpected peer location",
+                "category": "location.unexpected",
+                "author": "mark.adams@trustnetworks.com",
+                "source": "Trust Networks"
+            },
+            "children": [
+                {
+                    "pattern": {
+                        "type": "src.country",
+                        "value": "Latvia"
+                    }
+                },
+                {
+                    "pattern": {
+                        "type": "dest.country",
+                        "value": "Latvia"
+                    }
+                }
+            ]
+        }
+    ]
+}
